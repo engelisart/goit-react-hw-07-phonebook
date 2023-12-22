@@ -15,6 +15,12 @@ export const phoneBookSlice = createSlice({
     },
     filter: '',
   },
+  reducers: {
+    searchContact: (state, action) => {
+      state.filter = action.payload;
+    },
+  },
+
   extraReducers: bilder => {
     bilder
       .addCase(fetchContactsThunk.fulfilled, (state, { payload }) => {
@@ -55,14 +61,7 @@ export const phoneBookSlice = createSlice({
 
 export const phoneReducer = phoneBookSlice.reducer;
 
-export const {
-  addContact,
-  deleteContact,
-  searchContact,
-  fetchingData,
-  isPending,
-  isError,
-} = phoneBookSlice.actions;
+export const { searchContact } = phoneBookSlice.actions;
 
 // reducers: {
 //     fetchingData: (state, { payload }) => {

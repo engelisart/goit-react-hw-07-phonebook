@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const ContactItem = styled.li`
-  width: 300px;
+  width: 400px;
   display: flex;
   justify-content: space-between;
   gap: 8px;
