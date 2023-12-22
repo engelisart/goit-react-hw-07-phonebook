@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 import { ContactsForm, LabelForm, Input, Button } from './ContactForm.styled';
-// import { nanoid } from '@reduxjs/toolkit';
 
 export const ContactForm = props => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
-  const [id, setId] = useState('');
 
   const handleInputChange = event => {
     const { name, value } = event.target;
@@ -20,10 +18,9 @@ export const ContactForm = props => {
   const handleSubmit = event => {
     event.preventDefault();
 
-    props.addContact({ fullname: name, phone: number, id: id });
+    props.addContact({ fullname: name, phone: number });
     setName('');
     setNumber('');
-    setId('');
   };
 
   return (
