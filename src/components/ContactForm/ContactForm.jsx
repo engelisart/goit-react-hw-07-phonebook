@@ -1,9 +1,16 @@
 import React, { useState } from 'react';
 import { ContactsForm, LabelForm, Input, Button } from './ContactForm.styled';
+import { selectorContacts } from 'store/selectors';
+import { useDispatch, useSelector } from 'react-redux';
+import { addContactThunk } from 'store/contactsThunk';
 
 export const ContactForm = props => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
+
+  const contacts = useSelector(selectorContacts);
+
+  const dispatch = useDispatch();
 
   const handleInputChange = event => {
     const { name, value } = event.target;
@@ -18,9 +25,24 @@ export const ContactForm = props => {
   const handleSubmit = event => {
     event.preventDefault();
 
-    props.addContact({ fullname: name, phone: number });
     setName('');
     setNumber('');
+
+    const newContact = {
+      fullname: name,
+      phone: number,
+    };
+
+    const copyContact = contacts.find(
+      contact =>
+        contact.fullname.toLowerCase() === newContact.fullname.toLowerCase()
+    );
+
+    if (copyContact) {
+      alert(`${newContact.fullname} is already in contacts.`);
+      return;
+    }
+    dispatch(addContactThunk(newContact));
   };
 
   return (

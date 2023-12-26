@@ -21,8 +21,8 @@ export const phoneBookSlice = createSlice({
     },
   },
 
-  extraReducers: bilder => {
-    bilder
+  extraReducers: builder => {
+    builder
       .addCase(fetchContactsThunk.fulfilled, (state, { payload }) => {
         state.contacts.items = payload;
         state.contacts.isLoading = false;
@@ -62,32 +62,3 @@ export const phoneBookSlice = createSlice({
 export const phoneReducer = phoneBookSlice.reducer;
 
 export const { searchContact } = phoneBookSlice.actions;
-
-// reducers: {
-//     fetchingData: (state, { payload }) => {
-//       state.contacts.items = payload;
-//       state.contacts.isLoading = false;
-//     },
-
-//     isPending: (state, { payload }) => {
-//       state.contacts.isLoading = true;
-//       state.contacts.error = '';
-//     },
-
-//     isError: (state, { payload }) => {
-//       state.contacts.error = payload;
-//       state.contacts.isLoading = false;
-//     },
-
-//     addContact: (state, action) => {
-//       state.contacts.push(action.payload);
-//     },
-
-//     deleteContact: (state, { payload }) => {
-//       state.contacts = state.contacts.filter(contact => contact.id !== payload);
-//     },
-
-//     searchContact: (state, action) => {
-//       state.filter = action.payload;
-//     },
-//   },
